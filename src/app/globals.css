@@ -1,0 +1,88 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@500;600;700;800&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --brand: #34c0eb;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  @apply bg-white text-ink antialiased;
+  font-family: 'Inter', system-ui, sans-serif;
+}
+
+@layer components {
+  .container-x {
+    @apply mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8;
+  }
+
+  .btn {
+    @apply inline-flex items-center justify-center gap-2 rounded-full px-5 py-2.5 text-sm font-semibold transition-all duration-200;
+  }
+  .btn-brand {
+    @apply btn bg-brand text-white shadow-soft hover:bg-brand-600 hover:-translate-y-0.5;
+  }
+  .btn-outline {
+    @apply btn border border-brand text-brand-700 hover:bg-brand-50;
+  }
+  .btn-ghost {
+    @apply btn text-ink hover:bg-cloud;
+  }
+
+  .card {
+    @apply rounded-2xl border border-line bg-white shadow-card;
+  }
+
+  .section-eyebrow {
+    @apply inline-flex items-center gap-2 rounded-full bg-brand-50 px-3 py-1 text-xs font-semibold uppercase tracking-wide text-brand-700;
+  }
+
+  .input {
+    @apply w-full rounded-xl border border-line bg-white px-3.5 py-2.5 text-sm text-ink outline-none transition focus:border-brand focus:ring-2 focus:ring-brand/20 placeholder:text-muted/70;
+  }
+  .label {
+    @apply mb-1.5 block text-sm font-medium text-ink;
+  }
+}
+
+/* Headings use the display font */
+h1, h2, h3, .font-display {
+  font-family: 'Poppins', 'Inter', sans-serif;
+}
+
+/* ---------- Rich text output (.rich-prose) ---------- */
+.rich-prose { @apply text-[15px] leading-relaxed text-ink/90; }
+.rich-prose h1 { @apply text-3xl font-bold mt-4 mb-2; }
+.rich-prose h2 { @apply text-2xl font-bold mt-4 mb-2; }
+.rich-prose h3 { @apply text-xl font-semibold mt-3 mb-2; }
+.rich-prose h4 { @apply text-lg font-semibold mt-3 mb-1; }
+.rich-prose p { @apply my-2; }
+.rich-prose ul { @apply list-disc pl-6 my-2 space-y-1; }
+.rich-prose ol { @apply list-decimal pl-6 my-2 space-y-1; }
+.rich-prose a { @apply text-brand-700 underline; }
+.rich-prose blockquote { @apply border-l-4 border-brand pl-4 italic text-muted my-3; }
+.rich-prose img { @apply inline; }
+.rich-prose hr { @apply my-4 border-line; }
+.rich-prose .rte-icon { @apply inline-block; }
+.rich-prose .rte-custom-icon,
+.rich-prose img.rte-custom-icon { @apply inline-block w-5 h-5 align-text-bottom object-contain; }
+
+/* contentEditable placeholder */
+.rich-prose[contenteditable]:empty::before {
+  content: attr(data-placeholder);
+  @apply text-muted/60;
+}
+
+/* Hide scrollbar for horizontal carousels */
+.no-scrollbar::-webkit-scrollbar { display: none; }
+.no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
+/* Line clamp helpers */
+.clamp-2 { display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+.clamp-3 { display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }

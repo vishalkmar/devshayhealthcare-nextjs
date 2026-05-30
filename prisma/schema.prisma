@@ -1,0 +1,343 @@
+// Devrishi Pharma — Prisma schema (Neon Postgres)
+// Run `npm run prisma:push` to sync this schema to the database.
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// ------------------------------------------------------------------
+// Admin / auth
+// ------------------------------------------------------------------
+model Admin {
+  id           Int      @id @default(autoincrement())
+  email        String   @unique
+  passwordHash String
+  name         String   @default("Admin")
+  role         String   @default("admin")
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+
+  @@map("admins")
+}
+
+// ------------------------------------------------------------------
+// Hero sections (home + other pages)
+// type: image | image_text | image_carousel | image_carousel_text | video | video_carousel
+// ------------------------------------------------------------------
+model Hero {
+  id             Int          @id @default(autoincrement())
+  name           String // admin-only label
+  type           String       @default("image_text")
+  pageKey        String       @default("home")
+  isActive       Boolean      @default(true)
+  heading        String?
+  subheading     String?
+  ctaLabel       String?
+  ctaUrl         String?
+  textPosition   String       @default("center") // left | center | right
+  textColor      String       @default("#ffffff")
+  overlayOpacity Int          @default(35)
+  autoplay       Boolean      @default(true)
+  intervalMs     Int          @default(5000)
+  height         String       @default("lg") // sm | md | lg | full
+  sortOrder      Int          @default(0)
+  createdAt      DateTime     @default(now())
+  updatedAt      DateTime     @updatedAt
+  media          HeroMedia[]
+
+  @@index([pageKey])
+  @@index([isActive])
+  @@map("heroes")
+}
+
+model HeroMedia {
+  id        Int     @id @default(autoincrement())
+  heroId    Int
+  url       String
+  mediaType String  @default("image") // image | video
+  alt       String?
+  caption   String?
+  sortOrder Int     @default(0)
+  hero      Hero    @relation(fields: [heroId], references: [id], onDelete: Cascade)
+
+  @@index([heroId])
+  @@map("hero_media")
+}
+
+// ------------------------------------------------------------------
+// Categories (round-circle UI) + Products (medical)
+// ------------------------------------------------------------------
+model Category {
+  id          Int       @id @default(autoincrement())
+  name        String
+  slug        String    @unique
+  imageUrl    String?
+  description String?
+  sortOrder   Int       @default(0)
+  isActive    Boolean   @default(true)
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+  products    Product[]
+
+  @@index([isActive])
+  @@map("categories")
+}
+
+model Product {
+  id         Int       @id @default(autoincrement())
+  name       String
+  slug       String    @unique
+  categoryId Int?
+  category   Category? @relation(fields: [categoryId], references: [id], onDelete: SetNull)
+
+  // Identity
+  brandName    String? // e.g. "Pantop 40"
+  genericName  String? // e.g. "Pantoprazole"
+  manufacturer String?
+  sku          String?
+  hsnCode      String?
+  form         String? // Tablet | Capsule | Syrup | Injection | Ointment | Drops
+  strength     String? // e.g. "40 mg"
+  packSize     String? // e.g. "10 tablets per strip"
+  packagingType String? // Strip | Bottle | Box | Vial
+  schedule     String? // e.g. "Schedule H", "OTC"
+
+  // Composition / clinical
+  saltComposition  String? // active salts
+  ingredients      String?
+  uses             String? @db.Text // what it's used for
+  symptoms         String? @db.Text // symptoms it addresses
+  howToUse         String? @db.Text // dosage / directions
+  sideEffects      String? @db.Text
+  warnings         String? @db.Text // precautions / contraindications
+  storage          String? @db.Text
+  shortDescription String? @db.Text
+  description      String? @db.Text // rich HTML
+
+  // Commercial
+  pricePerStrip   Float?
+  pricePer10      Float?
+  pricePerTablet  Float?
+  pricePerBox     Float?
+  mrp             Float? // strike-through
+  currency        String  @default("INR")
+  minOrderQty     Int     @default(1)
+  unitsPerStrip   Int? // e.g. 10
+  stockStatus     String  @default("in_stock") // in_stock | out_of_stock | limited
+  prescriptionRequired Boolean @default(false)
+
+  // Lifecycle
+  shelfLife String? // e.g. "24 months from mfg"
+  countryOfOrigin String? @default("India")
+
+  // Media
+  primaryImage String?
+  images       ProductImage[]
+
+  // Flags & SEO
+  isFeatured      Boolean @default(false)
+  isPopular       Boolean @default(false)
+  isActive        Boolean @default(true)
+  metaTitle       String?
+  metaDescription String?
+  sortOrder       Int     @default(0)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([categoryId])
+  @@index([isActive])
+  @@index([isFeatured])
+  @@map("products")
+}
+
+model ProductImage {
+  id        Int     @id @default(autoincrement())
+  productId Int
+  url       String
+  alt       String?
+  sortOrder Int     @default(0)
+  product   Product @relation(fields: [productId], references: [id], onDelete: Cascade)
+
+  @@index([productId])
+  @@map("product_images")
+}
+
+// ------------------------------------------------------------------
+// Testimonials / reviews
+// type: text | image | gallery | video | image_text
+// ------------------------------------------------------------------
+model Testimonial {
+  id             Int                 @id @default(autoincrement())
+  type           String              @default("text")
+  authorName     String?
+  authorTitle    String?
+  authorLocation String?
+  authorAvatar   String?
+  rating         Int?
+  content        String?             @db.Text
+  videoUrl       String?
+  videoPoster    String?
+  mediaHeight    Int                 @default(240) // px height for the image/video on the card
+  mediaWidth     Int? // optional px width (defaults to full card width)
+  sortOrder      Int                 @default(0)
+  isActive       Boolean             @default(true)
+  createdAt      DateTime            @default(now())
+  updatedAt      DateTime            @updatedAt
+  media          TestimonialMedia[]
+
+  @@index([isActive])
+  @@map("testimonials")
+}
+
+model TestimonialMedia {
+  id            Int         @id @default(autoincrement())
+  testimonialId Int
+  url           String
+  mediaType     String      @default("image")
+  sortOrder     Int         @default(0)
+  testimonial   Testimonial @relation(fields: [testimonialId], references: [id], onDelete: Cascade)
+
+  @@index([testimonialId])
+  @@map("testimonial_media")
+}
+
+// ------------------------------------------------------------------
+// Promotion banners
+// type: image-single | image-carousel | image-text | video-single | video-carousel
+// ------------------------------------------------------------------
+model PromoBanner {
+  id          Int                 @id @default(autoincrement())
+  name        String
+  type        String              @default("image-single")
+  page        String              @default("home") // home | products | about | contact | all
+  position    String              @default("below-products")
+  heading     String?
+  description String?             @db.Text
+  ctaLabel    String?
+  ctaUrl      String?
+  heightPx    Int                 @default(360)
+  widthMode   String              @default("container") // full | container
+  autoplay    Boolean             @default(true)
+  intervalMs  Int                 @default(5000)
+  isActive    Boolean             @default(true)
+  sortOrder   Int                 @default(0)
+  createdAt   DateTime            @default(now())
+  updatedAt   DateTime            @updatedAt
+  slides      PromoBannerSlide[]
+
+  @@index([page, position, isActive])
+  @@map("promo_banners")
+}
+
+model PromoBannerSlide {
+  id         Int         @id @default(autoincrement())
+  bannerId   Int
+  url        String
+  mediaType  String      @default("image")
+  heading    String?
+  subheading String?
+  ctaLabel   String?
+  ctaUrl     String?
+  sortOrder  Int         @default(0)
+  banner     PromoBanner @relation(fields: [bannerId], references: [id], onDelete: Cascade)
+
+  @@index([bannerId])
+  @@map("promo_banner_slides")
+}
+
+// ------------------------------------------------------------------
+// FAQs
+// ------------------------------------------------------------------
+model Faq {
+  id        Int      @id @default(autoincrement())
+  question  String
+  answer    String   @db.Text
+  page      String   @default("home") // home | about | contact | all
+  side      String   @default("left") // left | right — which column on the public FAQ
+  sortOrder Int      @default(0)
+  isActive  Boolean  @default(true)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([page, isActive])
+  @@map("faqs")
+}
+
+// ------------------------------------------------------------------
+// CTA bands (call-to-action shown on pages)
+// ------------------------------------------------------------------
+model Cta {
+  id         Int      @id @default(autoincrement())
+  name       String   @default("CTA")
+  page       String   @default("all") // home | products | about | contact | all
+  badge      String?
+  heading    String?
+  subheading String?  @db.Text
+  ctaLabel   String?
+  ctaUrl     String?
+  bgImage    String?
+  isActive   Boolean  @default(true)
+  sortOrder  Int      @default(0)
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+
+  @@index([page, isActive])
+  @@map("ctas")
+}
+
+// ------------------------------------------------------------------
+// About page — flexible, admin-editable sections
+// sectionKey: hero | who_we_are | vision | mission | team | story | stats
+// data holds repeatable items (stats rows, team members, bullet lists)
+// ------------------------------------------------------------------
+model AboutSection {
+  id         Int      @id @default(autoincrement())
+  sectionKey String   @unique
+  eyebrow    String?
+  heading    String?
+  subheading String?  @db.Text
+  body       String?  @db.Text // rich HTML
+  imageUrl   String?
+  data       Json? // arrays: stats[], team[], bullets[]
+  isActive   Boolean  @default(true)
+  sortOrder  Int      @default(0)
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+
+  @@map("about_sections")
+}
+
+// ------------------------------------------------------------------
+// Generic key/value site settings (site details, theme, etc.)
+// key "site_details" holds: company, tagline, description, logo,
+// emails[], phones[], addresses[], socials[], whatsappNumber, mapUrl
+// ------------------------------------------------------------------
+model SiteSetting {
+  id    Int    @id @default(autoincrement())
+  key   String @unique
+  value Json?
+
+  @@map("site_settings")
+}
+
+// ------------------------------------------------------------------
+// Contact form submissions (stored + emailed)
+// ------------------------------------------------------------------
+model ContactMessage {
+  id        Int      @id @default(autoincrement())
+  name      String
+  email     String?
+  phone     String?
+  subject   String?
+  message   String   @db.Text
+  isRead    Boolean  @default(false)
+  createdAt DateTime @default(now())
+
+  @@map("contact_messages")
+}
