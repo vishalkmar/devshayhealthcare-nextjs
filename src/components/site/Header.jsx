@@ -30,15 +30,24 @@ export default function Header({ site = {} }) {
 
   useEffect(() => setOpen(false), [pathname]);
 
+  // Lock background scroll while the mobile drawer is open.
+  useEffect(() => {
+    document.body.style.overflow = open ? 'hidden' : '';
+    return () => {
+      document.body.style.overflow = '';
+    };
+  }, [open]);
+
   const textColor = solid ? 'text-ink' : 'text-white';
 
   return (
-    <header
-      className={`fixed inset-x-0 top-0 z-50 transition-all duration-300 ${
-        solid ? 'bg-white/90 backdrop-blur-md shadow-card border-b border-line' : 'bg-transparent'
-      }`}
-    >
-      <div className="container-x flex h-16 items-center justify-between md:h-20">
+    <>
+      <header
+        className={`fixed inset-x-0 top-0 z-50 transition-all duration-300 ${
+          solid ? 'bg-white/90 backdrop-blur-md shadow-card border-b border-line' : 'bg-transparent'
+        }`}
+      >
+        <div className="container-x flex h-16 items-center justify-between md:h-20">
         {/* Brand */}
         <Link href="/" className="flex items-center gap-2">
           {site.logo ? (
@@ -50,7 +59,7 @@ export default function Header({ site = {} }) {
                 <Pill size={18} />
               </span>
               <span className={`text-lg font-extrabold font-display ${textColor}`}>
-                {site.company || 'Devrishi Pharma'}
+                {site.company || 'Devshay Healthcare'}
               </span>
             </span>
           )}
@@ -87,9 +96,11 @@ export default function Header({ site = {} }) {
         >
           {open ? <X size={24} /> : <Menu size={24} />}
         </button>
-      </div>
+        </div>
+      </header>
 
-      {/* Mobile slide-in drawer */}
+      {/* Mobile slide-in drawer — rendered outside the header so its slide
+          animation isn't slowed by the header's backdrop-blur / transitions. */}
       <div
         className={`fixed inset-0 z-[60] md:hidden ${open ? 'pointer-events-auto' : 'pointer-events-none'}`}
         aria-hidden={!open}
@@ -97,16 +108,16 @@ export default function Header({ site = {} }) {
         {/* Overlay */}
         <div
           onClick={() => setOpen(false)}
-          className={`absolute inset-0 bg-ink/50 backdrop-blur-sm transition-opacity duration-300 ${open ? 'opacity-100' : 'opacity-0'}`}
+          className={`absolute inset-0 bg-ink/60 transition-opacity duration-200 ${open ? 'opacity-100' : 'opacity-0'}`}
         />
         {/* Panel */}
         <aside
-          className={`absolute right-0 top-0 flex h-full w-72 max-w-[80%] transform flex-col bg-white shadow-soft transition-transform duration-300 ${open ? 'translate-x-0' : 'translate-x-full'}`}
+          className={`absolute right-0 top-0 flex h-full w-72 max-w-[80%] flex-col bg-white shadow-soft transition-transform duration-300 ease-out [will-change:transform] ${open ? 'translate-x-0' : 'translate-x-full'}`}
         >
           <div className="flex items-center justify-between border-b border-line px-5 py-4">
             <span className="flex items-center gap-2">
               <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-brand text-white"><Pill size={16} /></span>
-              <span className="font-display text-base font-bold text-ink">{site.company || 'Devrishi Pharma'}</span>
+              <span className="font-display text-base font-bold text-ink">{site.company || 'Devshay Healthcare'}</span>
             </span>
             <button onClick={() => setOpen(false)} className="rounded-lg p-1.5 text-ink hover:bg-cloud" aria-label="Close menu">
               <X size={22} />
@@ -129,6 +140,6 @@ export default function Header({ site = {} }) {
           </nav>
         </aside>
       </div>
-    </header>
+    </>
   );
 }

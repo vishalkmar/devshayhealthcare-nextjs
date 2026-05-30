@@ -8,7 +8,7 @@ export const dynamic = 'force-dynamic';
 
 export async function generateMetadata() {
   const site = await getSiteDetails();
-  const name = site.company || 'Devrishi Pharma';
+  const name = site.company || 'Devshay Healthcare';
   return {
     title: 'About Us',
     description: `Learn about ${name} — a trusted B2B pharmaceutical supplier delivering quality medicines in bulk to pharmacies and distributors.`,

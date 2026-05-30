@@ -50,7 +50,7 @@ export default function SiteDetailsAdmin() {
         <Card title="Brand" desc="Name, tagline, description and logo.">
           <div className="space-y-4">
             <div className="grid gap-4 md:grid-cols-2">
-              <Field label="Company name"><Input value={form.company} onChange={(e) => set('company', e.target.value)} placeholder="Devrishi Pharma" /></Field>
+              <Field label="Company name"><Input value={form.company} onChange={(e) => set('company', e.target.value)} placeholder="Devshay Healthcare" /></Field>
               <Field label="Tagline"><Input value={form.tagline} onChange={(e) => set('tagline', e.target.value)} placeholder="Trusted B2B pharma supplier" /></Field>
             </div>
             <Field label="Short description (footer)"><Textarea value={form.description} onChange={(e) => set('description', e.target.value)} /></Field>

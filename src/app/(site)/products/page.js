@@ -6,7 +6,7 @@ export const dynamic = 'force-dynamic';
 
 export async function generateMetadata() {
   const [site, content] = await Promise.all([getSiteDetails(), getContent('products_page')]);
-  const name = site.company || 'Devrishi Pharma';
+  const name = site.company || 'Devshay Healthcare';
   return {
     title: content.heroTitle || 'Products',
     description: content.heroSubtitle || `Browse the full range of bulk pharmaceutical products available from ${name}.`,

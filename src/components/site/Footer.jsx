@@ -23,7 +23,7 @@ export default function Footer({ site = {}, footer = {}, products = [] }) {
               ) : (
                 <span className="flex items-center gap-2">
                   <span className="flex h-9 w-9 items-center justify-center rounded-xl bg-brand text-white"><Pill size={18} /></span>
-                  <span className="font-display text-lg font-extrabold text-white">{site.company || 'Devrishi Pharma'}</span>
+                  <span className="font-display text-lg font-extrabold text-white">{site.company || 'Devshay Healthcare'}</span>
                 </span>
               )}
             </Link>
@@ -101,7 +101,7 @@ export default function Footer({ site = {}, footer = {}, products = [] }) {
 
       <div className="border-t border-white/10">
         <div className="container-x flex flex-col items-center justify-between gap-2 py-5 text-xs text-white/50 sm:flex-row">
-          <span>© {year} {site.company || 'Devrishi Pharma'}. All rights reserved.</span>
+          <span>© {year} {site.company || 'Devshay Healthcare'}. All rights reserved.</span>
           <span>{footer.tagline || 'B2B Pharmaceutical Supplier'}</span>
         </div>
       </div>

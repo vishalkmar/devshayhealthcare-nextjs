@@ -9,7 +9,7 @@ export const dynamic = 'force-dynamic';
 
 export async function generateMetadata() {
   const site = await getSiteDetails();
-  const name = site.company || 'Devrishi Pharma';
+  const name = site.company || 'Devshay Healthcare';
   return {
     title: 'Contact Us',
     description: `Get in touch with ${name} for bulk orders, pricing and partnership enquiries. Call, email or message us on WhatsApp.`,

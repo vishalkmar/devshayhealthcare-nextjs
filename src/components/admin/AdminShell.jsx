@@ -44,7 +44,7 @@ export default function AdminShell({ admin, children }) {
       <aside className={`fixed inset-y-0 left-0 z-50 w-64 transform bg-ink text-white/80 transition-transform md:translate-x-0 ${open ? 'translate-x-0' : '-translate-x-full'}`}>
         <div className="flex h-16 items-center gap-2 border-b border-white/10 px-5">
           <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-brand text-white"><Pill size={18} /></span>
-          <span className="font-display text-lg font-bold text-white">Devrishi Admin</span>
+          <span className="font-display text-lg font-bold text-white">Devshay Admin</span>
         </div>
         <nav className="flex-1 overflow-y-auto px-3 py-4">
           {NAV.map((item, i) => {

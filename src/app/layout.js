@@ -4,7 +4,7 @@ import { getSiteDetails } from '@/lib/data';
 
 export async function generateMetadata() {
   const site = await getSiteDetails();
-  const name = site.company || 'Devrishi Pharma';
+  const name = site.company || 'Devshay Healthcare';
   const description = site.description
     || 'Bulk supplier of quality medicines and pharmaceutical products to pharmacies and distributors.';
   const base = process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000';

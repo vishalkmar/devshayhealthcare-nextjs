@@ -16,7 +16,7 @@ export async function getContent(key) {
 }
 
 const DEFAULT_SITE = {
-  company: 'Devrishi Pharma',
+  company: 'Devshay Healthcare',
   tagline: 'Trusted B2B pharmaceutical supplier',
   description: 'Bulk supplier of quality medicines and pharmaceutical products to pharmacies and distributors.',
   logo: '',

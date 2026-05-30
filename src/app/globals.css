@@ -12,6 +12,14 @@ html {
   scroll-behavior: smooth;
 }
 
+/* Prevent stray decorative/absolute elements from creating a sideways
+   scrollbar on small screens. */
+html,
+body {
+  overflow-x: hidden;
+  max-width: 100%;
+}
+
 body {
   @apply bg-white text-ink antialiased;
   font-family: 'Inter', system-ui, sans-serif;
