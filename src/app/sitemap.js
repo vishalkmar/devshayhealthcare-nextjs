@@ -3,18 +3,14 @@
 // active product (pulled live from the DB so newly-added products show up
 // automatically). Admin/API routes are intentionally excluded.
 import prisma from '@/lib/prisma';
+import { getBaseUrl } from '@/lib/siteUrl';
 
-// Always build fresh from the DB so new/removed products are reflected
-// without a redeploy.
+// Always build fresh from the DB (and the live request host) so new/removed
+// products and the correct domain are reflected without a redeploy.
 export const dynamic = 'force-dynamic';
 
-function siteUrl() {
-  // Strip any trailing slash so we never emit "https://site.com//products".
-  return (process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000').replace(/\/+$/, '');
-}
-
 export default async function sitemap() {
-  const base = siteUrl();
+  const base = getBaseUrl();
   const now = new Date();
 
   // Static pages with sensible crawl priorities.

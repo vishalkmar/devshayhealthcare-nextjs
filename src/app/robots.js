@@ -1,12 +1,14 @@
 // Dynamic robots.txt — Next.js App Router serves this at /robots.txt.
 // Allows crawling of the public site, blocks admin + API internals, and points
 // crawlers at the sitemap.
-function siteUrl() {
-  return (process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000').replace(/\/+$/, '');
-}
+import { getBaseUrl } from '@/lib/siteUrl';
+
+// Derive the domain from the live request (see siteUrl.js), so robots.txt is
+// always correct on whatever host it's served from.
+export const dynamic = 'force-dynamic';
 
 export default function robots() {
-  const base = siteUrl();
+  const base = getBaseUrl();
   return {
     rules: [
       {
