@@ -63,7 +63,9 @@ export default function SiteDetailsAdmin() {
             <Field label="WhatsApp number" hint="With country code, e.g. 919876543210. Used by the floating button & Book now.">
               <Input value={form.whatsappNumber} onChange={(e) => set('whatsappNumber', e.target.value)} placeholder="919876543210" />
             </Field>
-            <Field label="Google Maps URL (optional)"><Input value={form.mapUrl} onChange={(e) => set('mapUrl', e.target.value)} /></Field>
+            <Field label="Google Maps embed code (optional)" hint='Google Maps → Share → "Embed a map" → COPY HTML, then paste the whole <iframe …> code here.'>
+              <Textarea value={form.mapUrl} onChange={(e) => set('mapUrl', e.target.value)} placeholder='<iframe src="https://www.google.com/maps/embed?pb=..." ...></iframe>' className="min-h-[110px] font-mono text-xs" />
+            </Field>
           </div>
         </Card>
 

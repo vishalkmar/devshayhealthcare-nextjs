@@ -9,6 +9,11 @@ function buildSrc(url) {
   const u = (url || '').trim();
   if (!u) return null;
 
+  // Full embed code pasted from Google Maps → Share → "Embed a map" → COPY HTML.
+  // Pull the src out of the <iframe …> tag and render it ourselves.
+  const tagSrc = u.match(/<iframe[^>]*\ssrc=["']([^"']+)["']/i);
+  if (tagSrc) return tagSrc[1];
+
   // Already an embeddable URL — use as-is.
   if (u.includes('/embed') || u.includes('output=embed')) return u;
 
