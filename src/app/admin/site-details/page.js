@@ -69,7 +69,7 @@ export default function SiteDetailsAdmin() {
           </div>
         </Card>
 
-        <ListCard title="Email addresses" icon={Mail} items={form.emails} placeholder="info@devrishi.com"
+        <ListCard title="Email addresses" icon={Mail} items={form.emails} placeholder="info@devshayhealthcare.com"
           onAdd={() => addStr('emails')} onChange={(i, v) => setStr('emails', i, v)} onDelete={(i) => delStr('emails', i)} />
 
         <ListCard title="Contact numbers" icon={Phone} items={form.phones} placeholder="+91 98765 43210"

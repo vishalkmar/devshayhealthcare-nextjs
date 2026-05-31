@@ -1,4 +1,4 @@
-// Devrishi Pharma — Prisma schema (Neon Postgres)
+// Devshay Healthcare — Prisma schema (Neon Postgres)
 // Run `npm run prisma:push` to sync this schema to the database.
 
 generator client {

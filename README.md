@@ -1,4 +1,4 @@
-# Devrishi Pharma — B2B Pharmacy Website
+# Devshay Healthcare — B2B Pharmacy Website
 
 A full-stack B2B pharmaceutical website with an admin panel. Built with **Next.js (JavaScript, App Router)**, **Neon Postgres + Prisma**, **Tailwind CSS**, **Cloudinary** (media) and **Gmail SMTP** (email).
 

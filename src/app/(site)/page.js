@@ -17,7 +17,7 @@ export const dynamic = 'force-dynamic';
 
 export async function generateMetadata() {
   const site = await getSiteDetails();
-  const name = site.company || 'Devrishi Pharma';
+  const name = site.company || 'Devshay Healthcare';
   return {
     title: `${name} — Bulk Medicines for Pharmacies & Distributors`,
     description: site.description || `${name} supplies quality medicines and pharmaceutical products in bulk to pharmacies and distributors across India.`,
@@ -220,7 +220,7 @@ function FallbackHero({ company }) {
       <div className="container-x relative z-10 text-white">
         <div className="max-w-2xl animate-fadeUp">
           <h1 className="font-display text-4xl font-extrabold leading-tight md:text-6xl">
-            {company || 'Devrishi Pharma'}
+            {company || 'Devshay Healthcare'}
           </h1>
           <p className="mt-4 text-lg opacity-90">
             Your trusted B2B partner for bulk pharmaceutical supply. Quality medicines, competitive pricing, reliable delivery.

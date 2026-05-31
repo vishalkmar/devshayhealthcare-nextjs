@@ -28,12 +28,12 @@ async function main() {
     create: {
       key: 'site_details',
       value: {
-        company: 'Devrishi Pharma',
+        company: 'Devshay Healthcare',
         tagline: 'Trusted B2B pharmaceutical supplier',
         description: 'Bulk supplier of quality medicines and pharmaceutical products to pharmacies and distributors across India.',
         logo: '',
         whatsappNumber: '919876543210',
-        emails: ['info@devrishipharma.com'],
+        emails: ['info@devshayhealthcare.com'],
         phones: ['+91 98765 43210'],
         addresses: ['Industrial Area, Delhi, India'],
         socials: [{ platform: 'Instagram', url: 'https://instagram.com' }, { platform: 'LinkedIn', url: 'https://linkedin.com' }],
@@ -69,7 +69,7 @@ async function main() {
       saltComposition: 'Pantoprazole 40mg', uses: 'Treats acidity, gastroesophageal reflux disease (GERD) and peptic ulcers.',
       symptoms: 'Heartburn, acid reflux, stomach pain', sideEffects: 'Headache, diarrhoea, nausea (usually mild).',
       howToUse: 'One tablet daily before breakfast, or as directed by a physician.',
-      pricePerStrip: 38, pricePer10: 360, pricePerBox: 1050, mrp: 95, manufacturer: 'Devrishi Pharma', schedule: 'Schedule H',
+      pricePerStrip: 38, pricePer10: 360, pricePerBox: 1050, mrp: 95, manufacturer: 'Devshay Healthcare', schedule: 'Schedule H',
     },
     {
       name: 'Azithro 500 Tablet', genericName: 'Azithromycin', strength: '500 mg', form: 'Tablet',
@@ -77,7 +77,7 @@ async function main() {
       saltComposition: 'Azithromycin 500mg', uses: 'Broad-spectrum antibiotic for respiratory, skin and ENT infections.',
       symptoms: 'Bacterial throat infection, sinusitis, bronchitis', sideEffects: 'Nausea, abdominal pain, diarrhoea.',
       howToUse: 'One tablet daily for 3 days or as prescribed.', prescriptionRequired: true,
-      pricePerStrip: 62, pricePer10: 590, mrp: 130, manufacturer: 'Devrishi Pharma', schedule: 'Schedule H',
+      pricePerStrip: 62, pricePer10: 590, mrp: 130, manufacturer: 'Devshay Healthcare', schedule: 'Schedule H',
     },
     {
       name: 'Dolo 650 Tablet', genericName: 'Paracetamol', strength: '650 mg', form: 'Tablet',
@@ -85,15 +85,15 @@ async function main() {
       saltComposition: 'Paracetamol 650mg', uses: 'Relieves fever and mild to moderate pain.',
       symptoms: 'Fever, body ache, headache', sideEffects: 'Rare when taken as directed.',
       howToUse: 'One tablet every 6 hours as needed, max 4 per day.',
-      pricePerStrip: 28, pricePer10: 270, mrp: 33, manufacturer: 'Devrishi Pharma',
+      pricePerStrip: 28, pricePer10: 270, mrp: 33, manufacturer: 'Devshay Healthcare',
     },
     {
-      name: 'Devrishi Multivit Capsule', genericName: 'Multivitamin & Minerals', form: 'Capsule',
+      name: 'Devshay Multivit Capsule', genericName: 'Multivitamin & Minerals', form: 'Capsule',
       category: 'Vitamins & Supplements', packSize: '10 capsules/strip', packagingType: 'Strip',
       saltComposition: 'Multivitamins, Multiminerals, Antioxidants', uses: 'Daily nutritional supplement for immunity and energy.',
       symptoms: 'Fatigue, weakness, nutritional deficiency', sideEffects: 'Generally well tolerated.',
       howToUse: 'One capsule daily after a meal.',
-      pricePerStrip: 75, pricePerBox: 1400, mrp: 150, manufacturer: 'Devrishi Pharma', isFeatured: true,
+      pricePerStrip: 75, pricePerBox: 1400, mrp: 150, manufacturer: 'Devshay Healthcare', isFeatured: true,
     },
   ];
   for (let i = 0; i < products.length; i++) {
@@ -160,7 +160,7 @@ async function main() {
 
   // ---- About ----
   const aboutSections = [
-    { sectionKey: 'hero', eyebrow: 'About us', heading: 'About Devrishi Pharma', subheading: 'A trusted name in B2B pharmaceutical supply, committed to quality and reliability.', sortOrder: 0 },
+    { sectionKey: 'hero', eyebrow: 'About us', heading: 'About Devshay Healthcare', subheading: 'A trusted name in B2B pharmaceutical supply, committed to quality and reliability.', sortOrder: 0 },
     { sectionKey: 'who_we_are', eyebrow: 'Who we are', heading: 'Led by quality, driven by trust', subheading: 'We supply genuine, certified medicines in bulk to pharmacies and distributors across India.', sortOrder: 1, data: { stats: [{ value: '15+', label: 'Years of experience' }, { value: '5,000+', label: 'Pharmacies served' }, { value: '28+', label: 'States covered' }, { value: '100%', label: 'Genuine products' }], bullets: ['WHO-GMP certified sourcing', 'Pan-India logistics network', 'Competitive bulk pricing', 'Responsive support team'] } },
     { sectionKey: 'vision', eyebrow: 'Our Vision', heading: 'Accessible healthcare for every pharmacy', subheading: 'To be the most trusted pharmaceutical supply partner in the country.', sortOrder: 2 },
     { sectionKey: 'mission', eyebrow: 'Our Mission', heading: 'Reliable supply, every time', subheading: 'Bridging manufacturers and pharmacies with quality products and dependable service.', sortOrder: 3 },
