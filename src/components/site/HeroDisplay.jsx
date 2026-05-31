@@ -49,9 +49,9 @@ export default function HeroDisplay({ hero }) {
         <div className={`container-x relative z-10 flex h-full ${POS[hero.textPosition] || POS.center}`}>
           <div className="max-w-2xl animate-fadeUp" style={{ color: hero.textColor || '#fff' }}>
             {hero.heading && (
-              <h1 className="font-display text-4xl font-extrabold leading-tight drop-shadow md:text-6xl">
+              <h2 className="font-display text-4xl font-extrabold leading-tight drop-shadow md:text-6xl">
                 {hero.heading}
-              </h1>
+              </h2>
             )}
             {hero.subheading && <p className="mt-4 text-lg opacity-90 md:text-xl">{hero.subheading}</p>}
             {hero.ctaLabel && hero.ctaUrl && (

@@ -44,8 +44,47 @@ export default async function HomePage() {
   const aboutBlock = about.who_we_are || about.hero;
   const badges = content.trustBadges || [];
 
+  // Organization + WebSite structured data — tells Google the home page is the
+  // canonical page for the "Devshay Healthcare" brand (helps it outrank inner
+  // pages for the brand query and can enable sitelinks).
+  const baseUrl = (process.env.NEXT_PUBLIC_SITE_URL || 'https://devshayhealthcare.com').replace(/\/$/, '');
+  const jsonLd = {
+    '@context': 'https://schema.org',
+    '@graph': [
+      {
+        '@type': 'Organization',
+        '@id': `${baseUrl}/#organization`,
+        name: site.company || 'Devshay Healthcare',
+        url: baseUrl,
+        ...(site.logo ? { logo: site.logo, image: site.logo } : {}),
+        description: site.description,
+        ...(site.phones?.length ? { telephone: site.phones[0] } : {}),
+        ...(site.emails?.length ? { email: site.emails[0] } : {}),
+        ...(site.socials?.length ? { sameAs: site.socials.map((s) => s.url).filter(Boolean) } : {}),
+      },
+      {
+        '@type': 'WebSite',
+        '@id': `${baseUrl}/#website`,
+        url: baseUrl,
+        name: site.company || 'Devshay Healthcare',
+        publisher: { '@id': `${baseUrl}/#organization` },
+      },
+    ],
+  };
+
   return (
     <>
+      {/* eslint-disable-next-line react/no-danger */}
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
+
+      {/* Primary H1 — brand-anchored, always present so the home page is the
+          page that ranks for the "Devshay Healthcare" brand query. Kept
+          screen-reader-only because the hero already shows a large visual
+          heading; this guarantees a keyword-rich H1 regardless of hero config. */}
+      <h1 className="sr-only">
+        {site.company || 'Devshay Healthcare'} — B2B bulk medicine &amp; pharmaceutical supplier for pharmacies, retailers and distributors across India
+      </h1>
+
       {/* Hero */}
       {heroes.length > 0 ? (
         <HeroDisplay hero={heroes[0]} />
@@ -219,9 +258,9 @@ function FallbackHero({ company }) {
     <section className="relative flex min-h-[80vh] items-center bg-gradient-to-br from-brand-500 to-brand-700">
       <div className="container-x relative z-10 text-white">
         <div className="max-w-2xl animate-fadeUp">
-          <h1 className="font-display text-4xl font-extrabold leading-tight md:text-6xl">
+          <h2 className="font-display text-4xl font-extrabold leading-tight md:text-6xl">
             {company || 'Devshay Healthcare'}
-          </h1>
+          </h2>
           <p className="mt-4 text-lg opacity-90">
             Your trusted B2B partner for bulk pharmaceutical supply. Quality medicines, competitive pricing, reliable delivery.
           </p>
