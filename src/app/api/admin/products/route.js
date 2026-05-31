@@ -5,6 +5,8 @@ import { uniqueSlug, toInt, toBool, toNum } from '@/lib/helpers';
 
 const include = { category: true, images: { orderBy: { sortOrder: 'asc' } } };
 
+export const dynamic = 'force-dynamic';
+
 export async function productData(body, id = null) {
   return {
     name: body.name,

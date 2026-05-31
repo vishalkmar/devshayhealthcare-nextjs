@@ -5,6 +5,8 @@ import { bannerData, slideRows } from '../route';
 
 const include = { slides: { orderBy: { sortOrder: 'asc' } } };
 
+export const dynamic = 'force-dynamic';
+
 export async function GET(req, { params }) {
   const item = await prisma.promoBanner.findUnique({ where: { id: Number(params.id) }, include });
   if (!item) return NextResponse.json({ message: 'Not found' }, { status: 404 });

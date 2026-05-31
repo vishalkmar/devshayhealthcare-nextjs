@@ -31,6 +31,8 @@ export function mediaRows(body) {
   }));
 }
 
+export const dynamic = 'force-dynamic';
+
 export async function GET() {
   try {
     const items = await prisma.testimonial.findMany({ include, orderBy: [{ sortOrder: 'asc' }, { id: 'desc' }] });

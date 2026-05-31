@@ -5,6 +5,8 @@ import { productData, imageRows } from '../route';
 
 const include = { category: true, images: { orderBy: { sortOrder: 'asc' } } };
 
+export const dynamic = 'force-dynamic';
+
 export async function GET(req, { params }) {
   const item = await prisma.product.findUnique({ where: { id: Number(params.id) }, include });
   if (!item) return NextResponse.json({ message: 'Not found' }, { status: 404 });

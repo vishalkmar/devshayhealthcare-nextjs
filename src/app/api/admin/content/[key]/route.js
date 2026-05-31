@@ -7,6 +7,8 @@ function settingKey(key) {
   return `content:${key}`;
 }
 
+export const dynamic = 'force-dynamic';
+
 export async function GET(req, { params }) {
   const { key } = params;
   if (!CONTENT_KEYS.includes(key)) return NextResponse.json({ message: 'Unknown content key' }, { status: 404 });

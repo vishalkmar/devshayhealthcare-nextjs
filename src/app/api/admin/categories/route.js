@@ -15,5 +15,7 @@ async function transform(body, id = null) {
 const orderBy = [{ sortOrder: 'asc' }, { name: 'asc' }];
 const include = { _count: { select: { products: true } } };
 
+export const dynamic = 'force-dynamic';
+
 export const { GET, POST } = makeCollection({ model: 'category', include, orderBy, beforeWrite: (b) => transform(b) });
 export { transform as categoryTransform };

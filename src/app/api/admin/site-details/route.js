@@ -4,6 +4,8 @@ import { requireAdmin } from '@/lib/auth';
 
 const KEY = 'site_details';
 
+export const dynamic = 'force-dynamic';
+
 export async function GET() {
   try {
     const row = await prisma.siteSetting.findUnique({ where: { key: KEY } });

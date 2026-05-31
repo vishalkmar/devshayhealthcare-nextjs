@@ -16,4 +16,6 @@ export function ctaTransform(body) {
   };
 }
 
+export const dynamic = 'force-dynamic';
+
 export const { GET, POST } = makeCollection({ model: 'cta', beforeWrite: ctaTransform });

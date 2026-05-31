@@ -12,6 +12,8 @@ export function faqTransform(body) {
   };
 }
 
+export const dynamic = 'force-dynamic';
+
 export const { GET, POST } = makeCollection({
   model: 'faq',
   orderBy: [{ sortOrder: 'asc' }, { id: 'asc' }],
