@@ -1,5 +1,6 @@
 import { Mail, MapPin, Phone, MessageCircle, Clock } from 'lucide-react';
 import ContactForm from '@/components/site/ContactForm';
+import MapEmbed from '@/components/site/MapEmbed';
 import PageBanner from '@/components/site/PageBanner';
 import { SOCIAL_ICONS } from '@/components/site/socialIcons';
 import { getSiteDetails, getContent } from '@/lib/data';
@@ -99,6 +100,19 @@ export default async function ContactPage() {
           </div>
         </div>
       </section>
+
+      {/* Map */}
+      {site.mapUrl && (
+        <section className="container-x pb-16" data-aos="fade-up">
+          <div className="mb-6 flex items-center gap-2">
+            <Icon><MapPin size={16} /></Icon>
+            <h2 className="font-display text-2xl font-bold text-ink">Find us on the map</h2>
+          </div>
+          <div className="overflow-hidden rounded-3xl border border-line shadow-card">
+            <MapEmbed url={site.mapUrl} className="h-[360px] w-full md:h-[460px]" />
+          </div>
+        </section>
+      )}
     </>
   );
 }

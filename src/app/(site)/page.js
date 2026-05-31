@@ -1,11 +1,13 @@
 import Link from 'next/link';
-import { CheckCircle2, Truck, ShieldCheck, Award, Star, Heart, Pill } from 'lucide-react';
+import { CheckCircle2, Truck, ShieldCheck, Award, Star, Heart, Pill, Mail, Phone, MapPin } from 'lucide-react';
 import HeroDisplay from '@/components/site/HeroDisplay';
 import SectionHeader from '@/components/site/SectionHeader';
 import ProductShowcase from '@/components/site/ProductShowcase';
 import PromoBanners from '@/components/site/PromoBanners';
 import Testimonials from '@/components/site/Testimonials';
 import Faqs from '@/components/site/Faqs';
+import ContactForm from '@/components/site/ContactForm';
+import MapEmbed from '@/components/site/MapEmbed';
 import {
   getHeroes, getCategories, getProducts, getPromoBanners,
   getTestimonials, getFaqs, getAboutSections, getSiteDetails, getContent,
@@ -143,7 +145,72 @@ export default async function HomePage() {
         </section>
       )}
 
+      {/* Contact + Map */}
+      <section className="container-x py-16">
+        <SectionHeader
+          eyebrow="Get in touch"
+          title="Let's"
+          highlight="connect"
+          subtitle="Send us your requirement or reach us directly — our team usually responds within a few hours."
+        />
+        <div className="grid items-stretch gap-6 lg:grid-cols-2" data-aos="fade-up">
+          {/* Contact form */}
+          <div className="card flex flex-col p-6 md:p-8">
+            <h3 className="font-display text-xl font-bold text-ink">Send us a message</h3>
+            <p className="mt-1 text-sm text-muted">Fill in the form and we'll get back to you shortly.</p>
+            <div className="mt-6 flex-1">
+              <ContactForm />
+            </div>
+          </div>
+
+          {/* Contact details + map */}
+          <div className="card flex flex-col overflow-hidden p-0">
+            <div className="space-y-4 p-6 md:p-8">
+              <h3 className="font-display text-xl font-bold text-ink">Reach us directly</h3>
+              <ul className="space-y-3.5 text-sm">
+                {(site.addresses || []).map((a, i) => (
+                  <li key={`a-${i}`} className="flex items-start gap-3">
+                    <HomeIcon><MapPin size={16} /></HomeIcon>
+                    <span className="text-ink/80">{a}</span>
+                  </li>
+                ))}
+                {(site.phones || []).map((p, i) => (
+                  <li key={`p-${i}`} className="flex items-start gap-3">
+                    <HomeIcon><Phone size={16} /></HomeIcon>
+                    <a href={`tel:${p}`} className="text-ink/80 hover:text-brand">{p}</a>
+                  </li>
+                ))}
+                {(site.emails || []).map((e, i) => (
+                  <li key={`e-${i}`} className="flex items-start gap-3">
+                    <HomeIcon><Mail size={16} /></HomeIcon>
+                    <a href={`mailto:${e}`} className="text-ink/80 hover:text-brand">{e}</a>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            {site.mapUrl ? (
+              <div className="min-h-[240px] flex-1 border-t border-line">
+                <MapEmbed url={site.mapUrl} className="h-full min-h-[240px] w-full" />
+              </div>
+            ) : (
+              <div className="flex flex-1 items-center justify-center border-t border-line bg-cloud p-8 text-sm text-muted">
+                Add a Google Maps URL in admin → Site Details to show the map here.
+              </div>
+            )}
+          </div>
+        </div>
+      </section>
+
     </>
+  );
+}
+
+function HomeIcon({ children }) {
+  return (
+    <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-brand-50 text-brand-600">
+      {children}
+    </span>
   );
 }
 
