@@ -30,7 +30,7 @@ export default async function ProductsPage() {
 
   return (
     <>
-      <PageBanner badge="Bulk B2B catalogue" title={lead} typeWords={[last]} subtitle={content.heroSubtitle} />
+      <PageBanner title={lead} typeWords={[last]} subtitle={content.heroSubtitle} />
       <section className="container-x pb-16 pt-6">
         <ProductsBrowser categories={categories} products={products} whatsappNumber={site.whatsappNumber} />
       </section>

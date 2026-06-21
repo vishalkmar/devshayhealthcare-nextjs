@@ -18,7 +18,7 @@ export const CONTENT_DEFAULTS = {
     faqsHighlight: 'questions',
     faqsSubtitle: 'Quick answers about ordering, supply and partnerships.',
     trustBadges: [
-      { icon: 'truck', label: 'Pan-India bulk supply' },
+      { icon: 'truck', label: 'Pan india supply' },
       { icon: 'shield', label: 'Quality assured stock' },
       { icon: 'award', label: 'WHO-GMP certified' },
       { icon: 'check', label: 'Trusted by pharmacies' },

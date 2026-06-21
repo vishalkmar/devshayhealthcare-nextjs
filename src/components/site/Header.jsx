@@ -47,12 +47,12 @@ export default function Header({ site = {} }) {
           solid ? 'bg-white/90 backdrop-blur-md shadow-card border-b border-line' : 'bg-transparent'
         }`}
       >
-        <div className="container-x flex h-16 items-center justify-between md:h-20">
+        <div className="container-x flex h-20 items-center justify-between md:h-24">
         {/* Brand */}
         <Link href="/" className="flex items-center gap-2">
           {site.logo ? (
             // eslint-disable-next-line @next/next/no-img-element
-            <img src={site.logo} alt={site.company || 'Logo'} className="h-9 w-auto md:h-11" />
+            <img src={site.logo} alt={site.company || 'Logo'} className="h-14 w-auto md:h-20" />
           ) : (
             <span className="flex items-center gap-2">
               <span className="flex h-9 w-9 items-center justify-center rounded-xl bg-brand text-white shadow-soft">

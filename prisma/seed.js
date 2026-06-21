@@ -30,7 +30,7 @@ async function main() {
       value: {
         company: 'Devshay Healthcare',
         tagline: 'Trusted B2B pharmaceutical supplier',
-        description: 'Bulk supplier of quality medicines and pharmaceutical products to pharmacies and distributors across India.',
+        description: 'Devshay Healthcare is committed to delivering quality pharmaceutical products with trust, integrity, and excellence. We strive to support healthier communities through reliable healthcare solutions and customer-focused service.',
         logo: '',
         whatsappNumber: '919876543210',
         emails: ['info@devshayhealthcare.com'],
@@ -64,28 +64,12 @@ async function main() {
   // ---- Products ----
   const products = [
     {
-      name: 'Pantop 40 Tablet', genericName: 'Pantoprazole', strength: '40 mg', form: 'Tablet',
-      category: 'Gastro', packSize: '10 tablets/strip', packagingType: 'Strip',
-      saltComposition: 'Pantoprazole 40mg', uses: 'Treats acidity, gastroesophageal reflux disease (GERD) and peptic ulcers.',
-      symptoms: 'Heartburn, acid reflux, stomach pain', sideEffects: 'Headache, diarrhoea, nausea (usually mild).',
-      howToUse: 'One tablet daily before breakfast, or as directed by a physician.',
-      pricePerStrip: 38, pricePer10: 360, pricePerBox: 1050, mrp: 95, manufacturer: 'Devshay Healthcare', schedule: 'Schedule H',
-    },
-    {
       name: 'Azithro 500 Tablet', genericName: 'Azithromycin', strength: '500 mg', form: 'Tablet',
       category: 'Antibiotics', packSize: '3 tablets/strip', packagingType: 'Strip',
       saltComposition: 'Azithromycin 500mg', uses: 'Broad-spectrum antibiotic for respiratory, skin and ENT infections.',
       symptoms: 'Bacterial throat infection, sinusitis, bronchitis', sideEffects: 'Nausea, abdominal pain, diarrhoea.',
       howToUse: 'One tablet daily for 3 days or as prescribed.', prescriptionRequired: true,
       pricePerStrip: 62, pricePer10: 590, mrp: 130, manufacturer: 'Devshay Healthcare', schedule: 'Schedule H',
-    },
-    {
-      name: 'Dolo 650 Tablet', genericName: 'Paracetamol', strength: '650 mg', form: 'Tablet',
-      category: 'Pain Relief', packSize: '15 tablets/strip', packagingType: 'Strip',
-      saltComposition: 'Paracetamol 650mg', uses: 'Relieves fever and mild to moderate pain.',
-      symptoms: 'Fever, body ache, headache', sideEffects: 'Rare when taken as directed.',
-      howToUse: 'One tablet every 6 hours as needed, max 4 per day.',
-      pricePerStrip: 28, pricePer10: 270, mrp: 33, manufacturer: 'Devshay Healthcare',
     },
     {
       name: 'Devshay Multivit Capsule', genericName: 'Multivitamin & Minerals', form: 'Capsule',

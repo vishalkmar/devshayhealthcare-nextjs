@@ -15,13 +15,17 @@ import {
 
 export const dynamic = 'force-dynamic';
 
+// Single source of truth for the home/brand SEO description (also used in the
+// JSON-LD Organization description and the indexable H1 below).
+const SEO_DESCRIPTION = 'Devshay Healthcare is committed to delivering quality pharmaceutical products with trust, integrity, and excellence. We strive to support healthier communities through reliable healthcare solutions and customer-focused service.';
+
 export async function generateMetadata() {
   const site = await getSiteDetails();
   const name = site.company || 'Devshay Healthcare';
   return {
-    title: `${name} — Bulk Medicines for Pharmacies & Distributors`,
-    description: site.description || `${name} supplies quality medicines and pharmaceutical products in bulk to pharmacies and distributors across India.`,
-    keywords: [name, 'bulk medicines', 'B2B pharmacy', 'pharmaceutical wholesaler', 'medicine supplier India'],
+    title: `${name} — Quality Pharmaceutical Products`,
+    description: SEO_DESCRIPTION,
+    keywords: [name, 'pharmaceutical products', 'healthcare', 'quality medicines', 'medicine supplier India'],
     alternates: { canonical: '/' },
   };
 }
@@ -57,7 +61,7 @@ export default async function HomePage() {
         name: site.company || 'Devshay Healthcare',
         url: baseUrl,
         ...(site.logo ? { logo: site.logo, image: site.logo } : {}),
-        description: site.description,
+        description: SEO_DESCRIPTION,
         ...(site.phones?.length ? { telephone: site.phones[0] } : {}),
         ...(site.emails?.length ? { email: site.emails[0] } : {}),
         ...(site.socials?.length ? { sameAs: site.socials.map((s) => s.url).filter(Boolean) } : {}),
@@ -82,7 +86,7 @@ export default async function HomePage() {
           screen-reader-only because the hero already shows a large visual
           heading; this guarantees a keyword-rich H1 regardless of hero config. */}
       <h1 className="sr-only">
-        {site.company || 'Devshay Healthcare'} — B2B bulk medicine &amp; pharmaceutical supplier for pharmacies, retailers and distributors across India
+        {site.company || 'Devshay Healthcare'} — committed to delivering quality pharmaceutical products with trust, integrity and excellence for healthier communities
       </h1>
 
       {/* Hero */}
@@ -144,7 +148,7 @@ export default async function HomePage() {
               </div>
               <div className="absolute -bottom-2 left-1/2 flex -translate-x-1/2 items-center gap-2 rounded-2xl border border-line bg-white px-4 py-2.5 shadow-card">
                 <ShieldCheck size={18} className="text-brand" />
-                <span className="text-sm font-semibold text-ink">Trusted B2B supplier</span>
+                <span className="text-sm font-semibold text-ink">A Vision for Health, A Promise of Care</span>
               </div>
             </div>
           </div>

@@ -18,7 +18,7 @@ export async function getContent(key) {
 const DEFAULT_SITE = {
   company: 'Devshay Healthcare',
   tagline: 'Trusted B2B pharmaceutical supplier',
-  description: 'Bulk supplier of quality medicines and pharmaceutical products to pharmacies and distributors.',
+  description: 'Devshay Healthcare is committed to delivering quality pharmaceutical products with trust, integrity, and excellence. We strive to support healthier communities through reliable healthcare solutions and customer-focused service.',
   logo: '',
   emails: [],
   phones: [],

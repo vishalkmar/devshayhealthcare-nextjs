@@ -5,8 +5,9 @@ import { getSiteDetails } from '@/lib/data';
 export async function generateMetadata() {
   const site = await getSiteDetails();
   const name = site.company || 'Devshay Healthcare';
-  const description = site.description
-    || 'Bulk supplier of quality medicines and pharmaceutical products to pharmacies and distributors.';
+  // Dedicated SEO meta description (kept separate from the footer "Short
+  // description" so each can be edited independently).
+  const description = 'Devshay Healthcare is committed to delivering quality pharmaceutical products with trust, integrity, and excellence. We strive to support healthier communities through reliable healthcare solutions and customer-focused service.';
   const base = process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000';
 
   return {

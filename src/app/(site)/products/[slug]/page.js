@@ -68,7 +68,7 @@ export default async function ProductDetailPage({ params }) {
   return (
     <>
       {/* Breadcrumb spacer for fixed header */}
-      <div className="border-b border-line bg-cloud pt-24">
+      <div className="border-b border-line bg-cloud pt-28 md:pt-32">
         <div className="container-x flex items-center gap-2 py-3 text-sm text-muted">
           <Link href="/" className="hover:text-brand">Home</Link>
           <ChevronRight size={14} />
