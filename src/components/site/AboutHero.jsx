@@ -51,7 +51,7 @@ export default function AboutHero({ hero, company }) {
             {/* Floating badges */}
             <Badge className="-left-4 top-8" icon={<ShieldCheck size={16} />} title="Quality" sub="WHO-GMP" />
             <Badge className="-right-2 top-24" icon={<Star size={16} />} title="Trusted" sub="by pharmacies" />
-            <Badge className="bottom-6 left-2" icon={<Truck size={16} />} title="Pan-India" sub="bulk supply" />
+            <Badge className="bottom-6 left-2" icon={<Truck size={16} />} title="Pan India" sub="supply" />
           </div>
         </div>
       </div>
